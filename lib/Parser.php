@@ -5,7 +5,7 @@ namespace MaxKnowBox\IBlockShortcodes;
 use \Bitrix\Main\Config\Option;
 
 class Parser{
-    public function parseContent($content){
+    public static function parseContent($content){
         $moduleID = "maxknowbox.iblockshortcodes";
         $isEnabled = Option::get($moduleID, "is_enabled", false);
         if($isEnabled !== "N"){

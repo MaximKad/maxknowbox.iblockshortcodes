@@ -21,7 +21,7 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_admi
 
 $moduleId = "maxknowbox.iblockshortcodes";
 $dir = COption::GetOptionString($moduleId, "templates_dir", false, false, false);
-$fullDir = Application::getDocumentRoot() . $dir.'/';
+$fullDir = Application::getDocumentRoot() . $dir;
 
 if (!empty($_POST))
 {
@@ -82,14 +82,18 @@ if($_SESSION['RESULT'] && $_SESSION['RESULT'] == "success"){
                 <?
                 if (file_exists($fullDir)) {
                     foreach($iterator as $item) {
+                        
                         if ($item->isFile()) {
                             
                             $file = new IO\File($item->getPathname());
 
                             $fileMTime = filemtime($file->getPath());
+
                             
                             $filename = str_replace($fullDir, '', $file->getPath());
-                            $format = explode('.', $filename)[1];
+                            $last = count(explode('.', $filename)) - 1;
+
+                            $format = explode('.', $filename)[$last];
 
                             if($format == 'php'){
                             ?>
@@ -99,7 +103,7 @@ if($_SESSION['RESULT'] && $_SESSION['RESULT'] == "success"){
                                         <tbody>
                                             <tr>
                                                 <td align="left">
-                                                    <a href="iblockshortcodes_file_edit.php?lang=ru&filename=<?=$filename?>"><?=$file->getName()?></a>
+                                                    <a href="iblockshortcodes_file_edit.php?lang=ru&filename=<?=$file->getName()?>"><?=$file->getName()?></a>
                                                 </td>
                                             </tr>
                                         </tbody>
