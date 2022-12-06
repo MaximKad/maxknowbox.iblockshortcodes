@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && strlen($_REQUEST['save']) > 0 && che
         border: 1px solid;
         border-color: #87919c #959ea9 #9ea7b1 #959ea9;
         background-color: #FFFFFF !important;
-        height: 480px;
+        min-height: 480px;
         outline: none;
         padding: 10px;
     }
