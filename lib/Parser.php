@@ -8,7 +8,7 @@ class Parser{
     public static function parseContent($content){
         $moduleID = "maxknowbox.iblockshortcodes";
         $isEnabled = Option::get($moduleID, "is_enabled", false);
-        if($isEnabled !== "N"){
+        if($isEnabled == "Y"){
             //  Определяем url
             $url = explode('?', $_SERVER['REQUEST_URI'])[0];
             $isAdminUrl = strpos($url, "/bitrix/admin");

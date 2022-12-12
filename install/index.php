@@ -31,6 +31,36 @@ class maxknowbox_iblockshortcodes extends CModule{
          return false;
     }
 
+    public function InstallEvents(){
+        $moduleID = $this->MODULE_ID;
+        EventManager::getInstance()->registerEventHandler(
+            "main",
+            "OnEndBufferContent",
+            $moduleID,
+            "MaxKnowBox\IBlockShortcodes\Parser",
+            "parseContent",
+            "",
+            array(&$content)
+        );
+
+        return false;
+    }
+    public function UnInstallEvents(){
+        $moduleID = $this->MODULE_ID;
+        EventManager::getInstance()->registerEventHandler(
+            "main",
+            "OnEndBufferContent",
+            $moduleID,
+            "MaxKnowBox\IBlockShortcodes\Parser",
+            "parseContent",
+            "",
+            array(&$content)
+        );
+
+        return false;
+    }
+
+
     function InstallFiles()
 	{
 		CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/maxknowbox.iblockshortcodes/install/admin", $_SERVER["DOCUMENT_ROOT"]."/bitrix/admin", true, true);
@@ -48,11 +78,13 @@ class maxknowbox_iblockshortcodes extends CModule{
     {
         ModuleManager::registerModule($this->MODULE_ID);
         $this->InstallFiles();
+        $this->InstallEvents();
     }
 		//вызываем метод удаления таблицы и удаляем модуль из регистра
     public function doUninstall()
     {
         ModuleManager::unRegisterModule($this->MODULE_ID);
         $this->UnInstallFiles();
+        $this->UnInstallEvents();
     }
 }
