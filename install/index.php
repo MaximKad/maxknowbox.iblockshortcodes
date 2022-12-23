@@ -17,9 +17,9 @@ class maxknowbox_iblockshortcodes extends CModule{
       
             $arModuleVersion = array();
       
-            include_once(__DIR__."/version.php");
+            include(__DIR__."/version.php");
       
-            $this->MODULE_ID            = str_replace("_", ".", get_class($this));
+            $this->MODULE_ID            = 'maxknowbox.iblockshortcodes';
             $this->MODULE_VERSION       = $arModuleVersion["VERSION"];
             $this->MODULE_VERSION_DATE  = $arModuleVersion["VERSION_DATE"];
             $this->MODULE_NAME          = Loc::getMessage("MAXKNOWBOX_IBLOCKSHORTCODES_NAME");
